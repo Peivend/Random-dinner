@@ -1,0 +1,28 @@
+{% extends "base.html"%}
+{% block title %}<title>Meal Generator</title>{% endblock %}
+{% block content %}
+<header>
+    <h1>Meal Generator</h1>
+</header>
+<section>
+    <h2>Your meal is:</h2>
+    <h3>{{ meal.meal_name }}</h3>
+    {% if meal_data %}
+      <h4>Ingredients:</h4>
+      <ul>
+        {% for i in range(1, 21) %}
+            {% set ingredient = meal_data['strIngredient' + i|string] %}
+            {% if ingredient and ingredient.strip() != "" %}
+                <li>{{ ingredient }} - {{ meal_data['strMeasure' + i|string] }}</li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+        <h4>Instructions:</h4>
+        <p>{{ meal_data['strInstructions'] }}</p>
+    {%else%}
+        <p>Sorry, no data available for this meal.</p>
+    {%endif%}
+    <a href="{{ url_for('random_meal') }}"><h5>Get another random meal idea</h5></a>
+    <a href="{{ url_for('meals') }}"><h5>Back to meals selection</h5></a>
+</section>
+{% endblock %}

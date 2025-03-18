@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}<title>FoodPrepR Register</title>{% endblock %}
+{% block content %}
+<header>
+    <h1>Register</h1>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</header>
+    <section>
+        <form method="POST">
+            {{form.hidden_tag()}}
+            <p>
+                {{form.username.label}}<br>
+                {{form.username}}
+            </p>
+            <p>
+                {{form.email.label}}<br>
+                {{form.email}}
+            </p>
+            <p>
+                {{form.password.label}}<br>
+                {{form.password}}
+            </p>
+            <p>
+                {{form.confirm_password.label}}<br>
+                {{form.confirm_password}}
+            </p>
+            <p>{{ form.submit }}</p>
+        </form>
+    </section>
+{% endblock %}

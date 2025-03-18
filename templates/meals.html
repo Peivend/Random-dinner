@@ -1,0 +1,27 @@
+{% extends "base.html"%}
+{% block title %}<title>Meals</title>{% endblock %}
+{% block content %}
+<header>
+    <h1>Meals</h1
+</header>
+<section>
+    <h2>Choose a favorite meal</h2>
+    <form method="POST">
+        {{form.hidden_tag()}}
+        <p>
+            {{form.meal.label}}<br>
+            {{form.meal}}
+        </p>
+        <p>{{ form.submit }}</p>
+    </form>
+
+    <h2>Your favorite meals:</h2>
+    <ul>
+        {% for meal in user_favorites %}
+            <li>{{ meal.meal_name }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('random_meal') }}"><h3>Get a random meal idea</h3></a>
+</section>
+{% endblock %}
